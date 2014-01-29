@@ -371,9 +371,14 @@ describe('Helper `intlMessage`', function () {
         it('should return a message', function () {
             var tmp = Handlebars.compile('{{intl token="MSG" amount=amount}}'),
                 out = tmp({
-                    MSG: 'I have {amount, number, currency}.',
                     amount: 23.45
-                }, defaultData);
+                }, {
+                    data: {
+                        locale   : defaultData.data.locale,
+                        currency : defaultData.data.currency,
+                        MSG      : 'I have {amount, number, currency}.'
+                    }
+                });
 
             expect(out).to.equal('I have $23.45.');
         });
@@ -382,7 +387,6 @@ describe('Helper `intlMessage`', function () {
             assert.throw(function () {
                 var tmp = Handlebars.compile('{{intl token="BAD_TOKEN" amount=amount}}'),
                     out = tmp({
-                        MSG: 'I have {amount, number, currency}.',
                         amount: 23.45
                     }, defaultData);
             }, ReferenceError, 'Could not find path BAD_TOKEN in [object Object] at BAD_TOKEN');
