@@ -39,7 +39,8 @@
     "mocha": "1.15.*",
     "mockery": "~1.4.0",
     "intl": "*",
-    "intl-messageformat": "git://github.com/yahoo/intl-messageformat.git#master"
+    "intl-messageformat": "git://github.com/yahoo/intl-messageformat.git#master",
+    "benchmark": "~1.0.0"
   },
   "scripts": {
     "pretest": "grunt jshint build",
